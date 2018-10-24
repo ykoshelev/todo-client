@@ -11,6 +11,5 @@ export class AppComponent {
   public title = 'client';
 
   constructor(private service: AppService) {
-    this.service.get().subscribe(console.log);
   }
 }

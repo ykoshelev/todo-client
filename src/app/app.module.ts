@@ -5,6 +5,10 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './pages/login/login.module';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
+import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule,
+    HeaderModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

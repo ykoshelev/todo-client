@@ -6,12 +6,11 @@ const initialState = {
 };
 
 export function loginReducer(state = initialState, action: AppAction) {
-  console.log('action: ', action);
   switch (action.type) {
     case LOGIN:
       return {
         ...state,
-        isLogged: action.payload
+        isLogged: true
       };
 
     default:

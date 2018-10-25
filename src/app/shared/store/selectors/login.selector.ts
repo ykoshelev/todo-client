@@ -2,8 +2,7 @@ import { LoginState, MainState } from '../main.interface';
 import { createSelector } from '@ngrx/store';
 
 export const selectFeature = (state: MainState) => {
-  console.log('state: ', state);
-  return state;
+  return state.login;
 };
 
-export const isLogged = createSelector(selectFeature, (state: MainState) => state);
+export const isLogged = createSelector(selectFeature, (state: LoginState) => state.isLogged);

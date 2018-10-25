@@ -11,10 +11,11 @@ import { LoginAction } from 'src/app/shared/store/actions/login.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<MainState>) { }
 
   public ngOnInit(): void {
-    this.store.dispatch(new LoginAction('lkjgfchjn'));
+    this.store.dispatch(new LoginAction());
+
     this.store
       .pipe(
         select(isLogged)

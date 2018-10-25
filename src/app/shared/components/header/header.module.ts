@@ -3,9 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   exports: [HeaderComponent],
   declarations: [HeaderComponent],

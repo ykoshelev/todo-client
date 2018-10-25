@@ -9,6 +9,8 @@ import { LoginModule } from './pages/login/login.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HeaderModule } from './shared/components/header/header.module';
+import { StoreModule } from '@ngrx/store';
+import { mainReducer } from './shared/store/main.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { HeaderModule } from './shared/components/header/header.module';
     HttpClientModule,
     LoginModule,
     HeaderModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot(mainReducer)
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

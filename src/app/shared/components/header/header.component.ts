@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  public title = 'Angular TODO';
+  public appName = 'TODO';
+  public framework = 'Angular';
 
   constructor(private router: Router) { }
 

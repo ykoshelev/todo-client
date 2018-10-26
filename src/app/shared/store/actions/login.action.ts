@@ -1,4 +1,4 @@
-import { AppAction } from './../main.interface';
+import { AppAction } from './../../interfaces/index.interface';
 
 export const LOGIN = '[LOGIN] Login';
 export const LOGIN_SUCCESS = '[LOGIN] Login success';
@@ -6,7 +6,7 @@ export const LOGIN_FAILED = '[LOGIN] Login failed';
 
 export class LoginAction implements AppAction {
   public type = LOGIN;
-  constructor(public payload?: any) {}
+  constructor(public payload: any) {}
 }
 
 export class LoginActionSuccess implements AppAction {

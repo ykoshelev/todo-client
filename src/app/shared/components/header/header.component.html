@@ -4,5 +4,9 @@
     <div>{{ framework }}</div>
     <div class="title">{{ appName }}</div>
   </div>
-  <button mat-button (click)="login()">Login</button>
+  <button *ngIf="isLogged; else logoutTemplate" mat-button (click)="login()">Login</button>
+  
+  <ng-template #logoutTemplate>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-template>
 </mat-toolbar>

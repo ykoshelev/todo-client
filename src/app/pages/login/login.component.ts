@@ -1,8 +1,9 @@
+import { MainState } from './../../shared/interfaces/index.interface';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { MainState } from 'src/app/shared/store/main.interface';
-import { isLogged } from 'src/app/shared/store/selectors/login.selector';
+import { isLogged } from 'src/app/shared/store/selectors/login.selectors';
 import { LoginAction } from 'src/app/shared/store/actions/login.action';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,28 @@ import { LoginAction } from 'src/app/shared/store/actions/login.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
-  constructor(private store: Store<MainState>) { }
+
+  public loginForm: FormGroup;
+
+  constructor(
+    private store: Store<MainState>,
+    private fb: FormBuilder
+  ) { }
 
   public ngOnInit(): void {
-    this.store.dispatch(new LoginAction());
+    this.initForm();
+  }
 
-    this.store
-      .pipe(
-        select(isLogged)
-      )
-      .subscribe(d => console.log(d));
+  public confirm(): void {
+    if (this.loginForm.valid) {
+      this.store.dispatch(new LoginAction(this.loginForm.value));
+    }
+  }
+
+  private initForm(): void {
+    this.loginForm = this.fb.group({
+      login: [null, Validators.required],
+      password: [null, Validators.required]
+    });
   }
 }

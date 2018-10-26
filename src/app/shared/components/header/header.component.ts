@@ -1,5 +1,9 @@
+import { MainState } from './../../interfaces/index.interface';
+import { isLogged } from './../../store/selectors/login.selectors';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +11,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+@Unsubscribable()
 export class HeaderComponent implements OnInit {
 
-  public appName = 'TODO';
-  public framework = 'Angular';
+  public readonly appName = 'TODO';
+  public readonly framework = 'Angular';
 
-  constructor(private router: Router) { }
+  public isLogged: boolean;
 
-  public ngOnInit(): void { }
+  constructor(
+    private router: Router,
+    private store: Store<MainState>
+  ) { }
 
-  public login() {
+  public ngOnInit(): void {
+    this.initListeners();
+  }
+
+  public login(): void {
     this.router.navigate(['login']);
+  }
+
+  public logout(): void {
+    console.log('logout');
+  }
+
+  private initListeners(): void {
+    this.store
+      .pipe(
+        select(isLogged)
+      )
+      .subscribe(value => this.isLogged = value);
   }
 }

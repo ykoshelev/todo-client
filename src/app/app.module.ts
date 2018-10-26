@@ -1,3 +1,4 @@
+import { reducers } from './shared/store/reducers/index.reducer';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +11,9 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { HeaderModule } from './shared/components/header/header.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './shared/store/main.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './shared/store/effects/index.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,11 @@ import { reducers } from './shared/store/main.reducer';
     HttpClientModule,
     LoginModule,
     HeaderModule,
+    BrowserModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
+    BrowserAnimationsModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

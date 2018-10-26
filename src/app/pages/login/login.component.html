@@ -1,1 +1,14 @@
-<div>LOGIN PAGE</div>
+<mat-card class="container">
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content class="card-content">
+    <form class="form" [formGroup]="loginForm">
+      <mat-form-field>
+        <input matInput formControlName="login" type="text" placeholder="Input an email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="password" type="password" placeholder="Input an password">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+    </form>
+  </mat-card-content>
+</mat-card>

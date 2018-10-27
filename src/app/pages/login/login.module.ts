@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login.component';
 import { LoginService } from 'src/app/shared/services/login.service';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +28,6 @@ const routes = [
     BrowserAnimationsModule,
     RouterModule.forChild(routes),
     MatInputModule,
-    MatCardModule,
     MatFormFieldModule,
     MatButtonModule
   ],

@@ -4,9 +4,18 @@
     <div>{{ framework }}</div>
     <div class="title">{{ appName }}</div>
   </div>
-  <button *ngIf="isLogged; else logoutTemplate" class="header-button" mat-button (click)="login()">Login</button>
+  <button *ngIf="!(isLogged$ | async); else logoutTemplate"
+    class="header-button"
+    mat-button
+    (click)="login()">
+    Login
+  </button>
   
   <ng-template #logoutTemplate>
-    <button mat-button class="header-button" (click)="logout()">Logout</button>
+    <button mat-button
+      class="header-button"
+      (click)="logout()">
+      Logout
+    </button>
   </ng-template>
 </mat-toolbar>

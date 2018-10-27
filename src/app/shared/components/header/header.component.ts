@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { MainState } from './../../interfaces/index.interface';
 import { isLogged } from './../../store/selectors/login.selectors';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   public readonly appName = 'TODO';
   public readonly framework = 'Angular';
 
-  public isLogged: boolean;
+  public isLogged$: Observable<boolean>;
 
   constructor(
     private router: Router,
@@ -37,10 +38,9 @@ export class HeaderComponent implements OnInit {
   }
 
   private initListeners(): void {
-    this.store
+    this.isLogged$ = this.store
       .pipe(
         select(isLogged)
-      )
-      .subscribe(value => this.isLogged = value);
+      );
   }
 }

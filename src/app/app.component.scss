@@ -2,3 +2,15 @@
   padding: 15px 20%;
   height: calc(100% - 120px);
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.card-content {
+  display: flex;
+  height: 100%;
+}

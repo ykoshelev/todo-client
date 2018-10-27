@@ -21,7 +21,7 @@ export class LoginEffects {
       exhaustMap(({ payload: { login, password } }: LoginAction) =>
         this.service.signIn(login, password)
           .pipe(
-            map(() => new LoginActionSuccess()),
+            map(({ isSuccess }) => new LoginActionSuccess(isSuccess)),
             catchError(() => of(new LoginActionFailed()))
           )
       )

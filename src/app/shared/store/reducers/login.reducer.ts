@@ -10,7 +10,7 @@ export function loginReducer(state = initialState, action: AppAction) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLogged: true
+        isLogged: action.payload
       };
 
     default:

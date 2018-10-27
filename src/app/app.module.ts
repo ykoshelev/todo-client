@@ -1,3 +1,5 @@
+import { MatCardModule } from '@angular/material/card';
+import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { reducers } from './shared/store/reducers/index.reducer';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     LoginModule,
+    DashboardModule,
     HeaderModule,
+    MatCardModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),

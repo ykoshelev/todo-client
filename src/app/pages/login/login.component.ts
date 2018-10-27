@@ -1,9 +1,12 @@
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { MainState } from './../../shared/interfaces/index.interface';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { isLogged } from 'src/app/shared/store/selectors/login.selectors';
 import { LoginAction } from 'src/app/shared/store/actions/login.action';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +18,17 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
+  private isLogged$: Observable<boolean>;
+
   constructor(
     private store: Store<MainState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
-    this.initForm();
+    this.initVars();
+    this.initListeners();
   }
 
   public confirm(): void {
@@ -30,10 +37,23 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private initForm(): void {
+  private initVars(): void {
     this.loginForm = this.fb.group({
       login: [null, Validators.required],
       password: [null, Validators.required]
     });
+
+    this.isLogged$ = this.store
+      .pipe(
+        select(isLogged)
+      );
+  }
+
+  private initListeners(): void {
+    this.isLogged$
+      .pipe(
+        filter(Boolean)
+      )
+      .subscribe(() => this.router.navigate(['dashboard']));
   }
 }

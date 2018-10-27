@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { TitleAction } from 'src/app/shared/store/actions/app.action';
+import { Store } from '@ngrx/store';
+import { MainState } from 'src/app/shared/interfaces/index.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +10,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
-  constructor() { }
+  constructor(private store: Store<MainState>) { }
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {
+    this.store.dispatch(new TitleAction('Dashboard'));
+  }
 }

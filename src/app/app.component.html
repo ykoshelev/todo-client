@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="router-outlet-container">
   <mat-card class="container">
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>{{ title$ | async }}</mat-card-title>
       <mat-card-content class="card-content">
         <router-outlet></router-outlet>
       </mat-card-content>

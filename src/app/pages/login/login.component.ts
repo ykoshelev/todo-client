@@ -7,6 +7,7 @@ import { isLogged } from 'src/app/shared/store/selectors/login.selectors';
 import { LoginAction } from 'src/app/shared/store/actions/login.action';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { filter } from 'rxjs/operators';
+import { TitleAction } from 'src/app/shared/store/actions/app.action';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.store.dispatch(new TitleAction('Login'));
+
     this.initVars();
     this.initListeners();
   }

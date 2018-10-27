@@ -16,3 +16,9 @@ export interface AppState {
 export interface AppAction extends Action {
   payload?: any;
 }
+
+export interface TodoListItem {
+  name: string;
+  isComplite: boolean;
+}
+

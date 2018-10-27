@@ -1,3 +1,4 @@
+import { DashboardService } from './../../shared/services/dashboard.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -19,5 +20,6 @@ const routes: Routes = [
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent],
+  providers: [DashboardService]
 })
 export class DashboardModule { }

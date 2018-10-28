@@ -1,3 +1,4 @@
+import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainState } from './../../shared/interfaces/index.interface';
@@ -15,6 +16,7 @@ import { TitleAction } from 'src/app/shared/store/actions/app.action';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+@Unsubscribable()
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;

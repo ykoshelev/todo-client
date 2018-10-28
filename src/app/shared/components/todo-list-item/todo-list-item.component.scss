@@ -1,0 +1,36 @@
+@import '../../../../assets/vars.scss';
+
+:host {
+  display: list-item;
+  list-style: none;
+  margin: 5px 0;
+  background-color: $primary-color;
+  height: 35px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.button-container {
+  display: flex;
+}
+
+.name {
+  padding-left: 10px;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.icon {
+  cursor: pointer;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}

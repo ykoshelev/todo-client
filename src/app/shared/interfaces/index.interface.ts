@@ -19,6 +19,9 @@ export interface AppAction extends Action {
 
 export interface TodoListItem {
   name: string;
-  isComplite: boolean;
+  isComplete: boolean;
 }
 
+export interface GetNgClass {
+  [key: string]: boolean;
+}

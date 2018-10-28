@@ -1,3 +1,4 @@
+import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
 import { Observable } from 'rxjs';
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { AppService } from './app.service';
@@ -11,6 +12,7 @@ import { appTitle } from './shared/store/selectors/app.selectors';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+@Unsubscribable()
 export class AppComponent implements OnInit {
   public title$: Observable<string>;
 

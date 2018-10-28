@@ -1,6 +1,6 @@
 import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
 import { TodoListItem, GetNgClass } from './../../interfaces/index.interface';
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-todo-list-item',
@@ -13,10 +13,12 @@ export class TodoListItemComponent implements OnInit {
 
   public name: string;
 
+  @HostBinding('class') public animation = 'animated fadeInRight delay-0.5s';
+
   private _isComplete: boolean;
 
   public get isComplete(): GetNgClass {
-    return { 'complete': !this._isComplete };
+    return { 'complete': this._isComplete };
   }
   @Input() public set data({ name, isComplete }: TodoListItem) {
     if (name) {
@@ -41,6 +43,7 @@ export class TodoListItemComponent implements OnInit {
   public remove(): void {
     this.deleted.emit();
   }
+
 
   private initVars(): void {
     this.deleted = new EventEmitter<void>();

@@ -1,0 +1,4 @@
+<mat-form-field [class]="addTaskClassValue">
+  <input [formControl]="addTaskValue" matInput type="text" placeholder="Input an task name">
+</mat-form-field>
+<button mat-raised-button color="primary" class="add-btn" (click)="add()">Add task</button>

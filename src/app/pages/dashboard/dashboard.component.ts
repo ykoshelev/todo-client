@@ -6,6 +6,7 @@ import { TitleAction } from 'src/app/shared/store/actions/app.action';
 import { Store } from '@ngrx/store';
 import { MainState } from 'src/app/shared/interfaces/index.interface';
 import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
+import { FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,14 +31,20 @@ export class DashboardComponent implements OnInit {
     this.initListeners();
   }
 
+  public addTask(data: TodoListItem): void {
+
+    this.service.addTask(data)
+      .subscribe(console.log);
+  }
+
   private initListeners(): void {
-    this.service.getTodosList('1')
+    this.todoList$
       .subscribe(data => {
         console.log('data: ', data);
       });
   }
 
   private initVars(): void {
-    this.todoList$ = this.service.getTodosList('1');
+    this.todoList$ = this.service.getTodosList();
   }
 }

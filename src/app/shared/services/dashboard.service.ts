@@ -7,7 +7,11 @@ import { TodoListItem } from '../interfaces/index.interface';
 export class DashboardService {
   constructor(private httpClient: HttpClient) { }
 
-  public getTodosList(id: string): Observable<TodoListItem[]> {
-    return this.httpClient.get<TodoListItem[]>(`/todos?id=${id}`);
+  public getTodosList(): Observable<TodoListItem[]> {
+    return this.httpClient.get<TodoListItem[]>(`/todos`);
+  }
+
+  public addTask(data: TodoListItem): Observable<any> {
+    return this.httpClient.post(`/add-task`, data);
   }
 }

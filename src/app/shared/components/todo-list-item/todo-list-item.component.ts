@@ -11,9 +11,15 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input
 @Unsubscribable()
 export class TodoListItemComponent implements OnInit {
 
+  @Input() public set animateQueue(value: number) {
+    this.animationStyle = `${value + 1}00ms`;
+  }
+
   public name: string;
 
-  @HostBinding('class') public animation = 'animated fadeInRight delay-0.5s';
+  @HostBinding('class') public animation = 'animated fadeInRight ';
+
+  @HostBinding('style.animation-delay') public animationStyle: string;
 
   private _isComplete: boolean;
 

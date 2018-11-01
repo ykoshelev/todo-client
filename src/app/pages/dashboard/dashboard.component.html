@@ -1,6 +1,9 @@
 <div>
     <app-toolbar (addTask)="addTask($event)"></app-toolbar>
   <ul>
-    <app-todo-list-item *ngFor="let item of todoList$ | async" [data]="item"></app-todo-list-item>
+    <app-todo-list-item *ngFor="let item of todoList$ | async; let i = index"
+      [animateQueue]="i"
+      [data]="item">
+    </app-todo-list-item>
   </ul>
 </div>

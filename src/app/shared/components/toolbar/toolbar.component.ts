@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, HostBinding } from '@angular/core';
 import { TodoListItem } from '../../interfaces/index.interface';
 
 @Component({
@@ -14,6 +14,8 @@ export class ToolbarComponent implements OnInit {
   public addTaskClassValue: string;
 
   @Output() public addTask = new EventEmitter<TodoListItem>();
+
+  @HostBinding('class') public toolbarClass: string;
 
   constructor() { }
 
@@ -30,6 +32,6 @@ export class ToolbarComponent implements OnInit {
 
   private initVars(): void {
     this.addTaskValue = new FormControl();
-    this.addTaskClassValue = 'add-input animated fadeInRight delay-0.5s';
+    this.toolbarClass = 'animated fadeIn delay-1s';
   }
 }

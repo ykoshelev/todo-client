@@ -14,4 +14,12 @@ export class DashboardService {
   public addTask(data: TodoListItem): Observable<any> {
     return this.httpClient.put(`/add-task`, data);
   }
+
+  public completeTask(id: string, isComplete: boolean): Observable<any> {
+    return this.httpClient.put(`/complete-task`, { id, isComplete });
+  }
+
+  public removeTask(id: string): Observable<any> {
+    return this.httpClient.put(`/remove-task`, { id });
+  }
 }

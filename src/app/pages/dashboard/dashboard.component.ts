@@ -38,6 +38,19 @@ export class DashboardComponent implements OnInit {
       );
   }
 
+  public removeTask({ id }: TodoListItem): void {
+    this.todoList$ =  this.service.removeTask(id)
+      .pipe(
+        switchMap((list: TodoListItem[]) => of(list))
+      );
+  }
+
+  public completedTask({ id, isComplete }: TodoListItem): void {
+    this.service.completeTask(id, isComplete)
+      .subscribe();
+  }
+
+
   private initVars(): void {
     this.todoList$ = this.service.getTodosList();
   }

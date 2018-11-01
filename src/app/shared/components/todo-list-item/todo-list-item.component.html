@@ -1,7 +1,7 @@
 <div class="container">
   <div class="name" [ngClass]="isComplete">{{ name }}</div>
   <div class="button-container">
-    <mat-icon class="icon" (click)="complete()">done</mat-icon>
+    <mat-icon class="icon" (click)="complete()">{{ completeIcon }}</mat-icon>
     <mat-icon class="icon" (click)="remove()">delete</mat-icon>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
 import { TodoListItem, GetNgClass } from './../../interfaces/index.interface';
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input, HostBinding } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-todo-list-item',
@@ -9,50 +9,53 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 @Unsubscribable()
-export class TodoListItemComponent implements OnInit {
+export class TodoListItemComponent {
+
+  public name: string;
+
+  private _isComplete: boolean;
+  private _id: string;
+
+  public get isComplete(): GetNgClass {
+    return { 'complete': this._isComplete };
+  }
+
+  public get completeIcon(): string {
+    return this._isComplete
+      ? 'done_outline'
+      : 'done';
+  }
+
+  @Input() public set data({ id, name, isComplete }: TodoListItem) {
+    if (name) {
+      this.name = name;
+      this._isComplete = isComplete;
+      this._id = id;
+    }
+  }
 
   @Input() public set animateQueue(value: number) {
     this.animationStyle = `${value + 1}00ms`;
   }
 
-  public name: string;
+  @Output() public deleted = new EventEmitter<TodoListItem>();
+  @Output() public completed = new EventEmitter<TodoListItem>();
 
   @HostBinding('class') public animation = 'animated fadeInRight ';
-
   @HostBinding('style.animation-delay') public animationStyle: string;
 
-  private _isComplete: boolean;
-
-  public get isComplete(): GetNgClass {
-    return { 'complete': this._isComplete };
-  }
-  @Input() public set data({ name, isComplete }: TodoListItem) {
-    if (name) {
-      this.name = name;
-      this._isComplete = isComplete;
-    }
-  }
-
-  @Output() public deleted: EventEmitter<void>;
-  @Output() public completed: EventEmitter<void>;
-
-  constructor() { }
-
-  public ngOnInit(): void {
-    this.initVars();
-  }
-
   public complete(): void {
-    this.completed.emit();
+    this._isComplete = !this._isComplete;
+
+    this.completed.emit({
+      id: this._id,
+      isComplete: this._isComplete
+    });
   }
 
   public remove(): void {
-    this.deleted.emit();
-  }
-
-
-  private initVars(): void {
-    this.deleted = new EventEmitter<void>();
-    this.completed = new EventEmitter<void>();
+    this.deleted.emit({
+      id: this._id
+    });
   }
 }

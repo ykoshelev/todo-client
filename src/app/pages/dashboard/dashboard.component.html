@@ -3,7 +3,10 @@
   <ul>
     <app-todo-list-item *ngFor="let item of todoList$ | async; let i = index"
       [animateQueue]="i"
-      [data]="item">
+      [data]="item"
+      (deleted)="removeTask($event)"
+      (completed)="completedTask($event)"
+      >
     </app-todo-list-item>
   </ul>
 </div>

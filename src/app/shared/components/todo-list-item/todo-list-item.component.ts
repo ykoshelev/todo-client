@@ -41,7 +41,7 @@ export class TodoListItemComponent {
   @Output() public deleted = new EventEmitter<TodoListItem>();
   @Output() public completed = new EventEmitter<TodoListItem>();
 
-  @HostBinding('class') public animation = 'animated fadeInRight ';
+  @HostBinding('class') public animation = 'animated fadeIn';
   @HostBinding('style.animation-delay') public animationStyle: string;
 
   public complete(): void {

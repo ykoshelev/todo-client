@@ -6,7 +6,7 @@
       [data]="item"
       (deleted)="removeTask($event)"
       (completed)="completedTask($event)"
-      >
+      (save)="setDescription($event)">
     </app-todo-list-item>
   </ul>
 </div>

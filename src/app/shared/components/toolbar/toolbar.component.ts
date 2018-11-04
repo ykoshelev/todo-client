@@ -15,6 +15,7 @@ export class ToolbarComponent implements OnInit {
   public isToggled: boolean;
 
   @Output() public addTask = new EventEmitter<TodoListItem>();
+  @Output() public saveTask = new EventEmitter<TodoListItem>();
 
   @HostBinding('class') public toolbarClass: string;
 

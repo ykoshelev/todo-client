@@ -1,11 +1,16 @@
-<div class="container">
-  <div class="name" [ngClass]="isComplete">{{ name }}</div>
-  <div class="button-container">
-    <mat-icon class="icon" (click)="toggleDescription()">description</mat-icon>
-    <mat-icon class="icon" (click)="complete()">{{ completeIcon }}</mat-icon>
-    <mat-icon class="icon" (click)="remove()">delete</mat-icon>
+<ng-container [formGroup]="group">
+  <div class="container">
+    <div class="name" [ngClass]="isComplete">{{ name }}</div>
+    <div class="button-container">
+      <mat-icon class="icon" (click)="toggleDescription()">description</mat-icon>
+      <mat-icon class="icon" (click)="complete()">{{ completeIcon }}</mat-icon>
+      <mat-icon class="icon" (click)="remove()">delete</mat-icon>
+    </div>
   </div>
-</div>
-<mat-form-field *ngIf="isToggled" class="add-description animated fadeInDown">
-  <textarea formControlName="description" matInput type="text" placeholder="Input an task description"></textarea>
-</mat-form-field>
+  <div *ngIf="isToggled">
+    <mat-form-field class="add-description animated fadeInDown">
+      <textarea formControlName="description" matInput type="text" placeholder="Input an task description"></textarea>
+    </mat-form-field>
+    <button mat-button class="save-btn" (click)="saveDescription()">Save</button>
+  </div>
+</ng-container>

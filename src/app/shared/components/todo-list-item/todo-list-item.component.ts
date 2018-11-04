@@ -13,11 +13,18 @@ export class TodoListItemComponent {
 
   public name: string;
 
+  public isToggled: boolean;
+
   private _isComplete: boolean;
   private _id: string;
+  private _description: string;
 
   public get isComplete(): GetNgClass {
     return { 'complete': this._isComplete };
+  }
+
+  public get description(): string {
+    return this._description;
   }
 
   public get completeIcon(): string {
@@ -26,11 +33,12 @@ export class TodoListItemComponent {
       : 'done';
   }
 
-  @Input() public set data({ id, name, isComplete }: TodoListItem) {
+  @Input() public set data({ id, name, isComplete, description }: TodoListItem) {
     if (name) {
       this.name = name;
       this._isComplete = isComplete;
       this._id = id;
+      this._description = description;
     }
   }
 
@@ -57,5 +65,9 @@ export class TodoListItemComponent {
     this.deleted.emit({
       id: this._id
     });
+  }
+
+  public toggleDescription(): void {
+    this.isToggled = !this.isToggled;
   }
 }

@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, HostBinding } from '@angular/core';
 import { TodoListItem } from '../../interfaces/index.interface';
 
@@ -10,14 +10,15 @@ import { TodoListItem } from '../../interfaces/index.interface';
 })
 export class ToolbarComponent implements OnInit {
 
-  public addTaskValue: FormControl;
+  public group: FormGroup;
   public addTaskClassValue: string;
+  public isToggled: boolean;
 
   @Output() public addTask = new EventEmitter<TodoListItem>();
 
   @HostBinding('class') public toolbarClass: string;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   public ngOnInit(): void {
     this.initVars();
@@ -25,13 +26,21 @@ export class ToolbarComponent implements OnInit {
 
   public add(): void {
     this.addTask.emit({
-      name: this.addTaskValue.value,
+      ...this.group.value,
       isComplete: false
     });
   }
 
+  public addDescription(): void {
+    this.isToggled = !this.isToggled;
+  }
+
   private initVars(): void {
-    this.addTaskValue = new FormControl();
+    this.group = this.fb.group({
+      name: null,
+      description: null
+    });
     this.toolbarClass = 'animated fadeIn delay-1s';
+    this.isToggled = false;
   }
 }

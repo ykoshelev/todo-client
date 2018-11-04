@@ -22,4 +22,8 @@ export class DashboardService {
   public removeTask(id: string): Observable<any> {
     return this.httpClient.put(`/remove-task`, { id });
   }
+
+  public setDescription(id: string, description: string): Observable<any> {
+    return this.httpClient.put(`/description-task`, { id, description });
+  }
 }

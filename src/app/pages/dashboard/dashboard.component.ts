@@ -50,6 +50,11 @@ export class DashboardComponent implements OnInit {
       .subscribe();
   }
 
+  public setDescription({ id, description }): void {
+    this.service.setDescription(id, description)
+      .subscribe();
+  }
+
 
   private initVars(): void {
     this.todoList$ = this.service.getTodosList();

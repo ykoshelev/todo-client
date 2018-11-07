@@ -1,4 +1,11 @@
-import { LoginAction, LoginActionSuccess, LoginActionFailed } from 'src/app/shared/store/actions/login.action';
+import {
+  LoginAction,
+  LoginActionSuccess,
+  LoginActionFailed,
+  LOGOUT,
+  LogoutActionSuccess,
+  LogoutActionFailed
+} from 'src/app/shared/store/actions/login.action';
 import { Observable, of } from 'rxjs';
 import { LoginService } from './../../services/login.service';
 import { LOGIN } from './../actions/login.action';
@@ -24,6 +31,18 @@ export class LoginEffects {
             map(({ isSuccess }) => new LoginActionSuccess(isSuccess)),
             catchError(() => of(new LoginActionFailed()))
           )
+      )
+    ) as Observable<AppAction>;
+
+  @Effect()
+  public logout$ = this.actions$
+    .pipe(
+      ofType(LOGOUT),
+      exhaustMap(() => this.service.signOut()
+        .pipe(
+          map(() => new LogoutActionSuccess(false)),
+            catchError(() => of(new LogoutActionFailed()))
+        )
       )
     ) as Observable<AppAction>;
 }

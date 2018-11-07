@@ -5,6 +5,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Unsubscribable } from 'src/app/utils/decorators/unsubscribable.decorator';
 import { Store, select } from '@ngrx/store';
+import { LogoutAction } from '../../store/actions/login.action';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +35,8 @@ export class HeaderComponent implements OnInit {
   }
 
   public logout(): void {
-    console.log('logout');
+    this.store.dispatch(new LogoutAction());
+    this.router.navigate(['login']);
   }
 
   private initListeners(): void {

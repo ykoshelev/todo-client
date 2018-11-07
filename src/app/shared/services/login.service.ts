@@ -9,4 +9,8 @@ export class LoginService {
   public signIn(login: string, password: string): Observable<any> {
     return this.httpClient.post('/login', { login, password });
   }
+
+  public signOut(): Observable<any> {
+    return this.httpClient.post('/logout', { });
+  }
 }
